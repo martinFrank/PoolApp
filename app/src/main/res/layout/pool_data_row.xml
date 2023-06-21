@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:onClick="rowClick">
+
+    <TextView
+            android:text="01.01.2022"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDate"
+            android:gravity="center"
+            android:layout_weight="10"/>
+
+
+
+    <TextView
+            android:text="5.03"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewVolume"
+            android:gravity="center"
+            android:layout_weight="7"/>
+
+    <TextView
+            android:text="24°C"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTemperature"
+            android:gravity="center"
+            android:layout_weight="7"/>
+
+    <TextView
+            android:text="8.2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPh"
+            android:gravity="center"
+            android:layout_weight="7"/>
+
+    <TextView
+            android:text="50g"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPhChanger"
+            android:gravity="center"
+            android:layout_weight="7"/>
+
+    <TextView
+            android:text="250g"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewOxygen"
+            android:gravity="center"
+            android:layout_weight="7"/>
+
+    <TextView
+            android:text="180ml"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewActivator"
+            android:gravity="center"
+            android:layout_weight="7"/>
+
+</TableRow>
