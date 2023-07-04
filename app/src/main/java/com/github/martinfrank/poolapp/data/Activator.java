@@ -1,4 +1,4 @@
-package com.github.martinfrank.poolapp;
+package com.github.martinfrank.poolapp.data;
 
 public class Activator {
 

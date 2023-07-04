@@ -1,42 +1,42 @@
-package com.github.martinfrank.poolapp;
+package com.github.martinfrank.poolapp.data;
 
 
 public class PhChange {
 
-    private String currentPh;
-    private String poolVolume;
-    private String gramsToAdd;
-    private String phChange;
+    private float currentPh;
+    private float poolVolume;
+    private float gramsToAdd;
+    private float phChange;
 
-    public String getCurrentPh() {
+    public float getCurrentPh() {
         return currentPh;
     }
 
-    public void setCurrentPh(String currentPh) {
+    public void setCurrentPh(float currentPh) {
         this.currentPh = currentPh;
     }
 
-    public String getPoolVolume() {
+    public float getPoolVolume() {
         return poolVolume;
     }
 
-    public void setPoolVolume(String poolVolume) {
+    public void setPoolVolume(float poolVolume) {
         this.poolVolume = poolVolume;
     }
 
-    public String getGramsToAdd() {
+    public float getGramsToAdd() {
         return gramsToAdd;
     }
 
-    public void setGramsToAdd(String gramsToAdd) {
+    public void setGramsToAdd(float gramsToAdd) {
         this.gramsToAdd = gramsToAdd;
     }
 
-    public String getPhChange() {
+    public float getPhChange() {
         return phChange;
     }
 
-    public void setPhChange(String phChange) {
+    public void setPhChange(float phChange) {
         this.phChange = phChange;
     }
 

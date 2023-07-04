@@ -1,5 +1,6 @@
 package com.github.martinfrank.poolapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -12,6 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.toolbox.Volley;
+import com.github.martinfrank.poolapp.data.Activator;
+import com.github.martinfrank.poolapp.data.Oxygen;
+import com.github.martinfrank.poolapp.data.PhChange;
+import com.github.martinfrank.poolapp.data.PoolData;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,17 +30,15 @@ public class MainActivity extends AppCompatActivity implements InputChangeListen
     private ValueStore valueStore;
     private EditorTextWatcher editorTextWatcher;
 
+    @SuppressLint("SimpleDateFormat") //app is used in a local network only - we all share the same time
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-
     private static final float POOL_DIAMETER = 3.05f;
-
     private VolleyHandler volleyHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         valueStore = new ValueStore(this.getPreferences(MODE_PRIVATE));
         editorTextWatcher = new EditorTextWatcher(this);
@@ -113,12 +116,12 @@ public class MainActivity extends AppCompatActivity implements InputChangeListen
 
     private void loadStoredValues() {
         Log.d(LOG_TAG, "loadStoredValues()");
-        ((EditText) findViewById(R.id.editTextHeight)).setText("" + valueStore.loadHeight());
+        ((EditText) findViewById(R.id.editTextHeight)).setText(valueStore.loadHeight() );
     }
 
     private void saveStoredValues() {
         Log.d(LOG_TAG, "saveStoredValues()");
-        valueStore.storeHeight(getValueFromText(findViewById(R.id.editTextHeight)));
+        valueStore.storeHeight(Float.toString(getValueFromText(findViewById(R.id.editTextHeight))));
     }
 
     private void calculatePoolVolume() {
@@ -174,10 +177,10 @@ public class MainActivity extends AppCompatActivity implements InputChangeListen
 
 
     @Override
-    public void updatePoolData(List<PoolData> pooldataList) {
+    public void updatePoolData(List<PoolData> poolDataList) {
         TableLayout table = findViewById(R.id.pool_data_table);
         table.removeAllViewsInLayout();
-        for (PoolData poolData : pooldataList) {
+        for (PoolData poolData : poolDataList) {
             Log.d(LOG_TAG, "processing pooldata: " + poolData);
             TableRow tableRow = (TableRow) getLayoutInflater().inflate(R.layout.pool_data_row, table, false);
             ((TextView) tableRow.findViewById(R.id.textViewDate)).setText(poolData.getDate());
@@ -195,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements InputChangeListen
     @Override
     public void updatePhChange(PhChange phChange) {
         Log.d(LOG_TAG, "updatePhChange: " + phChange);
-        ((EditText) findViewById(R.id.editTextPhChanger)).setText(prettyNumber(phChange.getGramsToAdd()));
+        ((EditText) findViewById(R.id.editTextPhChanger)).setText(prettyNumber(Float.toString(phChange.getGramsToAdd())));
     }
 
     @Override

@@ -1,11 +1,7 @@
-package com.github.martinfrank.poolapp;
+package com.github.martinfrank.poolapp.data;
 
-
-import java.text.SimpleDateFormat;
 
 public class PoolData {
-
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     private String date;
 
