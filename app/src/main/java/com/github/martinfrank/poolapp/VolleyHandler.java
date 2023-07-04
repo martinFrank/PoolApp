@@ -25,7 +25,7 @@ public class VolleyHandler {
     }
 
     public void loadPoolData() {
-        String url = "http://192.168.0.100:8100/pooldata/latest";
+        String url = "http://192.168.0.100:8100/poolserver/api/pooldata/latest";
         JsonArrayRequest request = new JsonArrayRequest(url, response -> {
             Log.d(LOG_TAG, response.toString());
             List<PoolData> poolDataList = JsonUtil.createPoolDataList(response);
@@ -40,7 +40,7 @@ public class VolleyHandler {
 
     public void loadPhChangerTemplate(float volume, float ph) {
         Log.d(LOG_TAG, "loadPhChangerTemplate");
-        String url = "http://192.168.0.100:8100/maths/phminus";
+        String url = "http://192.168.0.100:8100/poolserver/api/maths/phminus";
 
         PhChange requestPhChange = new PhChange();
         requestPhChange.setPoolVolume(volume);
@@ -52,16 +52,14 @@ public class VolleyHandler {
             Log.d(LOG_TAG, "result: " + response);
             PhChange phChange = JsonUtil.createPhChange(response);
             restDataReceiver.updatePhChange(phChange);
-        }, error -> {
-            restDataReceiver.showToast("error loading template for ph");
-        });
+        }, error -> restDataReceiver.showToast("error loading template for ph"));
         queue.add(request);
 
     }
 
     public void loadOxygenTemplate(float volume) {
         Log.d(LOG_TAG, "loadOxygenTemplate");
-        String url = "http://192.168.0.100:8100/maths/oxygen";
+        String url = "http://192.168.0.100:8100/poolserver/api/maths/oxygen";
 
         Oxygen requestOxygen = new Oxygen();
         requestOxygen.setPoolVolume(Float.toString(volume));
@@ -72,16 +70,14 @@ public class VolleyHandler {
             Log.d(LOG_TAG, "result: " + response);
             Oxygen oxygen = JsonUtil.createOxygen(response);
             restDataReceiver.updateOxygen(oxygen);
-        }, error -> {
-            restDataReceiver.showToast("error loading template for ph");
-        });
+        }, error -> restDataReceiver.showToast("error loading template for ph"));
         queue.add(request);
 
     }
 
     public void loadActivatorTemplate(float volume) {
         Log.d(LOG_TAG, "loadActivatorTemplate");
-        String url = "http://192.168.0.100:8100/maths/activator";
+        String url = "http://192.168.0.100:8100/poolserver/api/maths/activator";
 
         Activator requestActivator = new Activator();
         requestActivator.setPoolVolume(Float.toString(volume));
@@ -92,28 +88,24 @@ public class VolleyHandler {
             Log.d(LOG_TAG, "result: " + response);
             Activator activator = JsonUtil.createActivator(response);
             restDataReceiver.updateActivator(activator);
-        }, error -> {
-            restDataReceiver.showToast("error loading template for ph");
-        });
+        }, error -> restDataReceiver.showToast("error loading template for ph"));
         queue.add(request);
     }
 
     public void insertOrUpdate(PoolData poolData) {
-        String url = "http://192.168.0.100:8100/pooldata/update";
+        String url = "http://192.168.0.100:8100/poolserver/api/pooldata/update";
         JSONObject jsonObject = JsonUtil.createJsonObject(poolData);
         Log.d(LOG_TAG, "json-object: " + jsonObject);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject, response -> {
             Log.d(LOG_TAG, "result: " + response);
             restDataReceiver.showToast("update success :-)");
-        }, error -> {
-            restDataReceiver.showToast("error updating pool data");
-        });
+        }, error -> restDataReceiver.showToast("error updating pool data"));
         queue.add(request);
     }
 
     public void delete(PoolData poolData) {
-        String url = "http://192.168.0.100:8100/pooldata/delete";
+        String url = "http://192.168.0.100:8100/poolserver/api/pooldata/delete";
         JSONObject jsonObject = JsonUtil.createJsonObject(poolData);
         Log.d(LOG_TAG, "json-object: " + jsonObject);
 
